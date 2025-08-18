@@ -13,18 +13,47 @@ function App() {
       isCompleted: true,
     },
   ]);
-  const [incompletedTodos, setIncompletedTodos] = useState([
+  const [incompleteTodos, setIncompleteTodos] = useState([
     {
       text: 'Pain the house',
       isCompleted: false,
     },
   ]);
 
+  function markTodoAsComplete(text) {
+    setIncompleteTodos(incompleteTodos.filter((todo) => todo.text !== text));
+    setCompletedTodos([
+      ...completedTodos,
+      {
+        ...incompleteTodos.find((todo) => todo.text === text),
+        isCompleted: true,
+      },
+    ]);
+  }
+
+  function deleteTodo(text) {
+    setCompletedTodos(completedTodos.filter((todo) => todo.text !== text));
+  }
+
+  function createTodo(text) {
+    console.log('value: ', text);
+    setIncompleteTodos([
+      ...incompleteTodos,
+      {
+        text,
+        isCompleted: false,
+      },
+    ]);
+  }
+
   return (
     <>
       <TodoList
         completedTodos={completedTodos}
-        incompleteTodos={incompletedTodos}
+        incompleteTodos={incompleteTodos}
+        onCompletedClicked={markTodoAsComplete}
+        onDeleteClicked={deleteTodo}
+        onCreateClicked={createTodo}
       />
     </>
   );

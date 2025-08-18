@@ -8,12 +8,14 @@ export default function NewTodoForm({ onCreateClicked }) {
       <input
         type="text"
         value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
+        onChange={(e) => {
+          setInputText(e.target.value);
+        }}
       />
       <button
         type="button"
         onClick={() => {
-          onCreateClicked();
+          onCreateClicked(inputText);
           // set text to empty string
           setInputText('');
         }}>
