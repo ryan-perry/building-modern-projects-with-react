@@ -5,6 +5,7 @@ import App from './App.jsx';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { todosSlice } from './todosSlice.js';
+import { RecoilRoot } from 'recoil';
 
 const store = configureStore({
   reducer: {
@@ -15,7 +16,9 @@ const store = configureStore({
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
     </Provider>
   </StrictMode>,
 );
