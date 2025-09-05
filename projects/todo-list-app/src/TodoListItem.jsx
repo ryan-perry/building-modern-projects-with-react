@@ -2,8 +2,16 @@ import { useDispatch } from 'react-redux';
 import { markTodoAsCompleted, deleteTodo } from './thunks';
 import styled from 'styled-components';
 
+const getBackgroundColor = ({ important }) => {
+  if (important) {
+    return 'background-color: yellow; color: #000;';
+  } else {
+    return 'background-color: transparent;';
+  }
+};
+
 const CardContainer = styled.div`
-  ${(props) => props.important && 'background-color: yellow; color: #000;'}
+  ${getBackgroundColor}
 
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
